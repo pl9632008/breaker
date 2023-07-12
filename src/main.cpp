@@ -31,12 +31,7 @@ int main(int argc, char * argv[]){
     //         mypose.decode(img,obj);
     //     }
     //     mypose.drawObjects(org_img,objects,writer);
-
-
     // }
-
-    // cv::VideoCapture cap(argv[1]);
-    // cv::VideoWriter writer("../video/out.avi",cv::VideoWriter::fourcc('M','J','P','G'), cap.get(cv::CAP_PROP_FPS), cv::Size(cap.get(cv::CAP_PROP_FRAME_WIDTH),cap.get(cv::CAP_PROP_FRAME_HEIGHT)));
        
        cv::VideoWriter writer;
 
@@ -50,27 +45,10 @@ int main(int argc, char * argv[]){
         for(int i = 0 ; i < objects.size(); i++){
             Object &obj = objects[i];    
             cv::Mat img = org_img(obj.rect);
-
-            cv::imwrite("crop.jpg",img);
-
             mypose.doInference(img,obj);
             mypose.decode(img,obj);
         }
         
         mypose.drawObjects(org_img,objects,writer);
-
-
-
-
-        // Object obj;
-            
-        //     cv::Mat img = cv::imread(argv[1]);
-        //     mypose.doInference(img,obj);
-        //     mypose.decode(img,obj);
-
-        // cv::VideoWriter writer;
-        // std::vector<Object> objects;
-
-        // mypose.drawObjects(img,objects,writer,obj);
 
 }

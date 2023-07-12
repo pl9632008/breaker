@@ -54,7 +54,6 @@ void Pose::loadEngine(std::string path){
 
         }
 
-   
         delete[] trtModelStream;
 }
 
@@ -208,9 +207,7 @@ void Pose::decode(cv::Mat& img,Object & obj){
                     x_index = (x_index - ( INPUT_W_ - r_h * img.cols )/2 )/r_h;
                     y_index = y_index/r_h;
 
-                }
-
-                //keypoint.p = cv::Point2f(x_index  ,y_index);         
+                }      
                 keypoint.p = cv::Point2f(x_index +obj.rect.x  ,y_index + obj.rect.y);
                 keypoint.prob = prob;
                 keypoints.push_back(keypoint);
@@ -234,9 +231,7 @@ void Pose::decode(cv::Mat& img,Object & obj){
                     x_index = (x_index - ( INPUT_W_ - r_h * img.cols )/2 )/r_h;
                     y_index = y_index/r_h;
 
-                }
-                            
-                //keypoint.p = cv::Point2f(x_index  ,y_index);   
+                } 
                 keypoint.p = cv::Point2f(x_index +obj.rect.x  ,y_index + obj.rect.y);
                 keypoint.prob = prob;
                 keypoints.push_back(keypoint);
@@ -260,8 +255,7 @@ void Pose::decode(cv::Mat& img,Object & obj){
                     x_index = (x_index - ( INPUT_W_ - r_h * img.cols )/2 )/r_h;
                     y_index = y_index/r_h;
 
-                }
-                //keypoint.p = cv::Point2f(x_index  ,y_index);               
+                }             
                 keypoint.p = cv::Point2f(x_index +obj.rect.x  ,y_index + obj.rect.y);
                 keypoint.prob = prob;
                 keypoints.push_back(keypoint);
@@ -280,10 +274,6 @@ float Pose::calAngle(cv::Point2f  p1 , cv::Point2f  p2){
         return angle;
 
 }
-
-
-
-
 
 /**
  * @brief draw rectangle and keypoints
@@ -407,7 +397,6 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
                     result = std::abs(angle) >=167 ? "he" : "kai"; 
                 }
 
-
                 int angle_baseLine=0;
                 std::string str = "angle = " +std::to_string(int(angle)) + ", result = " + result;
                 cv::Size angle_size = cv::getTextSize(str, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &angle_baseLine);
@@ -424,7 +413,6 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
                 cv::putText(image,str,cv::Point(x, y+angle_size.height),cv::FONT_HERSHEY_SIMPLEX,0.5,cv::Scalar(255,132,0));
  
             }
-
 
             color = colors[rand() % 81];
 
@@ -460,7 +448,6 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
             }
 
         }
-
 
     }
             // writer<<image;
