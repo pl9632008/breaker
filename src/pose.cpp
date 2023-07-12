@@ -93,10 +93,8 @@ cv::Mat Pose::preprocessImg(cv::Mat& img, int input_w, int input_h){
 void Pose::doInference(cv::Mat & org_img, Object & obj ){
 
     int label = obj.label;
-    //int label = 6;
 
     cv::Mat pr_img = preprocessImg(org_img,INPUT_W_,INPUT_H_);
-    cv::imwrite("pr_img.jpg",pr_img);
         
     for(int i = 0 ; i < INPUT_W_*INPUT_H_;i++){
         posein[i] = pr_img.at<cv::Vec3b>(i)[2]/255.0;
@@ -183,7 +181,6 @@ void Pose::doInference(cv::Mat & org_img, Object & obj ){
 void Pose::decode(cv::Mat& img,Object & obj){
         
         int label = obj.label;
-        // int label = 6;
         
         float r_w = INPUT_W_/(img.cols*1.0);
         float r_h = INPUT_H_/(img.rows*1.0);
@@ -345,7 +342,7 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
         cv::Size label_size = cv::getTextSize(text, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
 
         int x = obj.rect.x;
-        int y = obj.rect.y - label_size.height - baseLine;
+        int y = obj.rect.y ;
         if (y < 0)
             y = 0;
         if (x + label_size.width > image.cols)
@@ -362,18 +359,11 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
 
         if(!keypoints.empty()){
 
-
             int label = obj.label;
-            
             float angle;
-
             bool with_low_score_point = false;
-            for(auto i : keypoints){
-                if(i.prob<0.2f){
-                    with_low_score_point = true;
-                    break;
-                }
-            }
+
+            with_low_score_point = std::any_of(keypoints.begin(),keypoints.end(),[&](auto i){return i.prob<0.3f;});
 
             if(!with_low_score_point){
 
@@ -392,7 +382,7 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
 
                 }else if(label == 6 || label==7){
                     
-                    angle = calAngle(keypoints[0].p-keypoints[1].p, keypoints[1].p - keypoints[2].p ); 
+                    angle = calAngle(keypoints[0].p-keypoints[1].p, keypoints[2].p - keypoints[1].p ); 
 
                     result = std::abs(angle) >=167 ? "he" : "kai"; 
                 }
@@ -407,10 +397,10 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
                 if (x + angle_size.width > image.cols)
                     x = image.cols - angle_size.width;
 
-                cv::rectangle(image, cv::Rect(cv::Point(x, y), cv::Size(angle_size.width, angle_size.height + angle_baseLine)),
+                cv::rectangle(image, cv::Rect(cv::Point(x, y+2*angle_size.height), cv::Size(angle_size.width, angle_size.height + angle_baseLine)),
                         cv::Scalar(255, 255, 255), -1);
 
-                cv::putText(image,str,cv::Point(x, y+angle_size.height),cv::FONT_HERSHEY_SIMPLEX,0.5,cv::Scalar(255,132,0));
+                cv::putText(image,str,cv::Point(x, y+3*angle_size.height),cv::FONT_HERSHEY_SIMPLEX,0.5,cv::Scalar(255,132,0));
  
             }
 
@@ -426,7 +416,7 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
                     p2 = keypoints[ joint_pairs_GW11[i][1] ];
 
                 }
-                if (p1.prob < 0.2f || p2.prob < 0.2f)
+                if (p1.prob < 0.3f || p2.prob < 0.3f)
                         continue;
 
                 cv::line(image, p1.p, p2.p, cv::Scalar(color[0], color[1], color[2]), 4);
@@ -441,7 +431,7 @@ void Pose::drawObjects(cv::Mat& image, std::vector<Object>&objects,cv::VideoWrit
 
                 fprintf(stderr, "%.2f %.2f = %.5f\n", keypoint.p.x, keypoint.p.y, keypoint.prob);
 
-                if (keypoint.prob < 0.2f)
+                if (keypoint.prob < 0.3f)
                     continue;
 
                 cv::circle(image, keypoint.p, 3, cv::Scalar(color[0],color[1],color[2]), 4);

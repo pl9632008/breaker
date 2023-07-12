@@ -1,11 +1,8 @@
 #ifndef DAOZHA_INCLUDE_HEADER_H_
 #define DAOZHA_INCLUDE_HEADER_H_
 
-#include <iostream>
 #include <fstream>
 #include <opencv2/opencv.hpp>
-#include <algorithm>
-#include <ctime>
 #include "NvInfer.h"
 #include "cuda_runtime_api.h"
 using namespace nvinfer1;
@@ -24,4 +21,4 @@ struct  Object{
 };
 
 
-#endif
+#endif //DAOZHA_INCLUDE_HEADER_H_

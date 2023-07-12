@@ -10,7 +10,7 @@ void Detection::loadEngine(std::string path){
         char * trtModelStream{nullptr};
 
         std::ifstream file(path, std::ios::binary);
-        
+
         if(file.good()){
             file.seekg(0,std::ios::end);
             size = file.tellg();
@@ -168,7 +168,7 @@ std::vector<Object> Detection::decode(){
 
     std::vector<Object> objects;
     for(int i = 0 ; i<NUM_;i++){
-        if(yoloout[CLASSES_*i+4]>0.5){
+        if(yoloout[CLASSES_*i+4]>0.3){
             int l,r,t,b;
             float r_w = INPUT_W_/(org_img_cols_*1.0);
             float r_h = INPUT_H_/(org_img_rows_*1.0);

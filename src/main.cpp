@@ -2,6 +2,7 @@
 #include "pose.h"
 
 int main(int argc, char * argv[]){
+
     Detection mydect;
     Pose mypose;
 
@@ -33,7 +34,7 @@ int main(int argc, char * argv[]){
     //     mypose.drawObjects(org_img,objects,writer);
     // }
        
-       cv::VideoWriter writer;
+        cv::VideoWriter writer;
 
         cv::Mat org_img = cv::imread(argv[1]);
    

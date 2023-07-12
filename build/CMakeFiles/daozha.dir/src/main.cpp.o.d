@@ -1,7 +1,9 @@
 CMakeFiles/daozha.dir/src/main.cpp.o: /wangjiadong/daozha/src/main.cpp \
  /usr/include/stdc-predef.h /wangjiadong/daozha/./include/detection.h \
  /wangjiadong/daozha/./include/logger.h \
- /wangjiadong/daozha/./include/header.h /usr/include/c++/7/iostream \
+ /wangjiadong/daozha/./include/header.h /usr/include/c++/7/fstream \
+ /usr/include/c++/7/istream /usr/include/c++/7/ios \
+ /usr/include/c++/7/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -10,10 +12,9 @@ CMakeFiles/daozha.dir/src/main.cpp.o: /wangjiadong/daozha/src/main.cpp \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/cpu_defines.h \
- /usr/include/c++/7/ostream /usr/include/c++/7/ios \
- /usr/include/c++/7/iosfwd /usr/include/c++/7/bits/stringfwd.h \
- /usr/include/c++/7/bits/memoryfwd.h /usr/include/c++/7/bits/postypes.h \
- /usr/include/c++/7/cwchar /usr/include/wchar.h \
+ /usr/include/c++/7/bits/stringfwd.h /usr/include/c++/7/bits/memoryfwd.h \
+ /usr/include/c++/7/bits/postypes.h /usr/include/c++/7/cwchar \
+ /usr/include/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
@@ -129,9 +130,8 @@ CMakeFiles/daozha.dir/src/main.cpp.o: /wangjiadong/daozha/src/main.cpp \
  /usr/include/c++/7/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_inline.h \
  /usr/include/c++/7/bits/locale_facets.tcc \
- /usr/include/c++/7/bits/basic_ios.tcc \
- /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/istream \
- /usr/include/c++/7/bits/istream.tcc /usr/include/c++/7/fstream \
+ /usr/include/c++/7/bits/basic_ios.tcc /usr/include/c++/7/ostream \
+ /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/bits/istream.tcc \
  /usr/include/c++/7/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
@@ -245,6 +245,7 @@ CMakeFiles/daozha.dir/src/main.cpp.o: /wangjiadong/daozha/src/main.cpp \
  /usr/local/include/opencv4/opencv2/flann/params.h \
  /usr/local/include/opencv4/opencv2/flann/any.h \
  /usr/local/include/opencv4/opencv2/flann/defines.h \
+ /usr/include/c++/7/iostream \
  /usr/local/include/opencv4/opencv2/flann/saving.h \
  /usr/local/include/opencv4/opencv2/flann/nn_index.h \
  /usr/local/include/opencv4/opencv2/flann/result_set.h \
