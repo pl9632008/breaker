@@ -1,3 +1,0 @@
-/wangjiadong/daozha/build/CMakeFiles/rebuild_cache.dir
-/wangjiadong/daozha/build/CMakeFiles/edit_cache.dir
-/wangjiadong/daozha/build/CMakeFiles/daozha.dir
